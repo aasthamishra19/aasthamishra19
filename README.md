@@ -33,6 +33,6 @@ Welcome to my GitHub profile! I’m passionate about technology and innovation, 
 ## 📫 Get in Touch
 
 - **Email**: aasthamishraa19@gmail.com
-- **LinkedIn**: linkedin.com/in/aastha-mishra-64464825b
+- **LinkedIn**: https://linkedin.com/in/aastha-mishra19 
 - **GitHub**: https://github.com/aasthamishra19/aasthamishra19.git
 
