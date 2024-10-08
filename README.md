@@ -12,7 +12,7 @@ Welcome to my GitHub profile! I’m passionate about technology and innovation, 
 ## 💻 Tech Stack
 
 - **Languages**: Python, JavaScript, HTML, CSS
-- **Frameworks & Libraries**: React, Django, Bootstrap
+- **Frameworks & Libraries**: React, Bootstrap
 - **Tools**: GitHub, VS Code
 
 ## 🌟 Notable Projects
