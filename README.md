@@ -7,7 +7,6 @@ Welcome to my GitHub profile! I’m passionate about technology and innovation, 
 - **Current Focus**: Exploring and building innovative projects.
 - **Professional Interests**: Competitive coding and tech leadership.
 - **Extracurriculars**: State-level basketball, singing, dancing, and debating.
-- **Current Projects**: Developing a voice assistant named Jarvis, enhancing my React-based interactive text-to-speech project, and working on a travel app with personalized itineraries.
 
 ## 💻 Tech Stack
 
