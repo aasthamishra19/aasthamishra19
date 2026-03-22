@@ -42,7 +42,7 @@ Follow these steps in order. Total time: about **20–30 minutes** the first tim
 ## 3. Deploy the frontend (Vercel)
 
 1. Go to [https://vercel.com](https://vercel.com) → import the **same** GitHub repo.
-2. **Root Directory:** `client`
+2. **Root Directory:** `client` (required — do not use the repo root, or the build will not find Vite).
 3. **Framework Preset:** Vite  
 4. **Build command:** `npm run build`  
 5. **Output directory:** `dist`
@@ -78,6 +78,7 @@ Follow these steps in order. Total time: about **20–30 minutes** the first tim
 
 | Problem | What to check |
 |--------|----------------|
+| `vite: command not found` / build exit 127 | Set **Root Directory** to **`client`**. This project lists **Vite** under `dependencies` so production installs still get the CLI; redeploy after pulling latest. |
 | Blank page / failed fetch | `VITE_API_URL` matches Render URL exactly; rebuild Vercel after changing it. |
 | CORS error in browser console | `CLIENT_URL` on Render matches the browser address bar origin exactly. |
 | API won’t start | `MONGODB_URI` correct; Atlas network allows `0.0.0.0/0`. |
