@@ -32,6 +32,11 @@ app.use(
   cors({
     origin(origin, cb) {
       if (!origin) return cb(null, true);
+      if (process.env.NODE_ENV !== 'production') {
+        if (/^https?:\/\/localhost:\d+$/.test(origin) || /^https?:\/\/127\.0\.0\.1:\d+$/.test(origin)) {
+          return cb(null, true);
+        }
+      }
       const ok = allowedOrigins().includes(origin);
       cb(null, ok);
     },
