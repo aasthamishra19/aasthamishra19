@@ -1,4 +1,5 @@
-const base = import.meta.env.VITE_API_URL || '';
+const rawBase = import.meta.env.VITE_API_URL || '';
+const base = typeof rawBase === 'string' ? rawBase.replace(/\/$/, '') : '';
 
 export function getToken() {
   return localStorage.getItem('token');

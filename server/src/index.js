@@ -15,12 +15,26 @@ import notificationRoutes from './routes/notifications.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+app.set('trust proxy', 1);
+
+const PORT = Number(process.env.PORT) || 5000;
+const DEFAULT_ORIGINS = ['http://localhost:5173'];
+function allowedOrigins() {
+  const raw = process.env.CLIENT_URL || '';
+  const list = raw
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return list.length ? list : DEFAULT_ORIGINS;
+}
 
 app.use(
   cors({
-    origin: CLIENT_URL,
+    origin(origin, cb) {
+      if (!origin) return cb(null, true);
+      const ok = allowedOrigins().includes(origin);
+      cb(null, ok);
+    },
     credentials: true,
   })
 );
@@ -37,10 +51,28 @@ app.use('/api/notifications', notificationRoutes);
 
 app.get('/api/health', (_, res) => res.json({ ok: true }));
 
-mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/flowtrack')
+async function connectDb() {
+  let uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/flowtrack';
+  if (uri === 'memory') {
+    if (process.env.NODE_ENV === 'production') {
+      console.error(
+        'MONGODB_URI=memory is not allowed in production. Set MONGODB_URI to your MongoDB Atlas connection string.'
+      );
+      process.exit(1);
+    }
+    const { MongoMemoryServer } = await import('mongodb-memory-server');
+    const mongod = await MongoMemoryServer.create();
+    uri = mongod.getUri();
+    console.log('Dev: using in-memory MongoDB (data resets when server stops)');
+  }
+  await mongoose.connect(uri);
+}
+
+connectDb()
   .then(() => {
-    app.listen(PORT, () => console.log(`API on http://localhost:${PORT}`));
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`API listening on port ${PORT}`);
+    });
   })
   .catch((err) => {
     console.error('MongoDB connection error:', err);

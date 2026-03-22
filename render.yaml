@@ -1,0 +1,19 @@
+# Render Blueprint: New → Blueprint → paste this repo URL, then set secret env vars in the dashboard.
+# Required secrets (not in this file): MONGODB_URI, JWT_SECRET, CLIENT_URL
+# CLIENT_URL = your Vercel site, e.g. https://flowtrack.vercel.app (no trailing slash)
+
+services:
+  - type: web
+    name: flowtrack-api
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NODE_ENV
+        value: production
