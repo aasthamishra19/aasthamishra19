@@ -24,7 +24,9 @@ This repository contains **FlowTrack**, a full-stack team task tracker (Jira-sty
 
 Windows shortcut: `.\scripts\setup-local.ps1` creates `server\.env` with in-memory MongoDB, installs deps, then run `npm run dev`.
 
-### Deploy (live URL for demos)
+### Deploy (live URL for demos)  
+
+** check my project here :** https://aasthamishra19-h17w4rq06-aasthamishra19s-projects.vercel.app
 
 Step-by-step: **[DEPLOY.md](./DEPLOY.md)** (MongoDB Atlas + Render API + Vercel).
 
